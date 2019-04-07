@@ -1,6 +1,12 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/nadim-khalil/go-utils)](https://goreportcard.com/report/github.com/nadim-khalil/go-utils)
+[![License](https://img.shields.io/github/license/nadim-khalil/go-utils.svg?color=red)](https://raw.githubusercontent.com/nadim-khalil/go-utils/master/LICENSE.md)
+[![GitHub last commit](https://img.shields.io/github/last-commit/nadim-khalil/go-utils.svg?color=blue)](https://github.com/nadim-khalil/go-utils/commits/master)
+[![GitHub contributors](https://img.shields.io/github/contributors/nadim-khalil/go-utils.svg?color=yellow)](https://github.com/nadim-khalil/go-utils/graphs/contributors)
+[![Dependent repos (via libraries.io)](https://img.shields.io/librariesio/dependent-repos/nadim-khalil/go-utils.svg)](https://github.com/nadim-khalil/go-utils/network/dependents)
+
 # Go Utils
 
-This repository contains the `utils` library, a set of useful tools to be use in go projects.
+This repository contains the `utils` library, a set of useful tools to be used in go projects.
 
 ## Getting Started
 
@@ -29,11 +35,11 @@ if err != nil {
 	utils.NewLog(logpath)
 	utils.Log.Printf("error in xxx func: %v \r\n", err)
 }
-os.Exit(1)
+
 ```
 
 #### CopyFile
-CopyFile copies a file from src to dst. If src and dst files exist, and are the same, then return success. Otherise, attempt to create a hard link between the two files. If that fail, copy the file contents from src to dst.
+CopyFile copies a file from src to dst. If src and dst files exist, and are the same, then return success. Otherwise, attempt to create a hard link between the two files. If that fail, copy the file contents from src to dst.
 
 *example:*
 ```
@@ -63,11 +69,11 @@ iniSQLQuery := "insert into [x.x.x.x].Alarms.dbo.xxx_tbl (number,date,text,flag_
 
 if err != nil {
 
-		fmt.Printf("error in getCurrentDir func: %v \r\n", err)
-		if iniConnString != "" && iniSQLQuery != "" {
-			utils.MsSQLSendAlarm(iniConnString, iniSQLQuery)
-		}
-		os.Exit(1)
+	fmt.Printf("error in getCurrentDir func: %v \r\n", err)
+	if iniConnString != "" && iniSQLQuery != "" {
+		utils.MsSQLSendAlarm(iniConnString, iniSQLQuery)
+	}
+}
 ```
 
 
