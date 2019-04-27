@@ -1,9 +1,11 @@
 package utils
 
 import (
+	"crypto/md5"
 	"database/sql"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	// Import go-mssqldb strictly for side-effects
@@ -113,5 +115,27 @@ func MsSQLSendAlarm(_connString string, _query string) {
 	}
 	stmt.Exec()
 	defer stmt.Close()
+
+}
+
+//ChecksumCompare used to compare checksum of 2 files to make sure the files are being copied without any tampering
+func ChecksumCompare(s, d string) (b bool, err error) {
+
+	// Get bytes from files
+	src, err := ioutil.ReadFile(s)
+	if err != nil {
+		//log.Fatal(err)
+		return false, err
+	}
+	dest, err := ioutil.ReadFile(d)
+	if err != nil {
+		//log.Fatal(err)
+		return false, err
+	}
+
+	if md5.Sum(src) == md5.Sum(dest) {
+		return true, nil
+	}
+	return false, nil
 
 }

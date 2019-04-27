@@ -57,6 +57,30 @@ if err != nil {
 	fmt.Printf("CopyFile succeeded\n")
 }
 ```
+#### ChecksumCompare
+ChecksumCompare can used to compare checksum of 2 files to make sure the files are being copied without any tampering
+
+*example:*
+```
+//to := "source file"
+//from := "destination file"
+
+fmt.Printf("Checksum comparison %s and %s\n", to, from)
+checksum, err := utils.ChecksumCompare(to, from)
+if err != nil {
+	fmt.Printf("ChecksumCompare failed %q\n", err)
+	logpath := "errors.log"
+	utils.NewLog(logpath)
+	utils.Log.Printf("error detected, ChecksumCompare failed")
+} else {
+	if checksum {
+		log.Println("Checksum comparison SUCCESS the 2 files are identical \n")
+	} else {
+		fmt.Printf("Checksum comparison FAIL the 2 files are not identical \n")
+	}
+}
+```
+
 #### MsSQLSendAlarm
 MsSQLSendAlarm can be used to send predefined alarms in the form of inserting text to tables in MSSQL DB used for Alarm notifications
 
